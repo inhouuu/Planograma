@@ -1,0 +1,113 @@
+@use 'sass:math';
+@import '../../app/globals.scss';
+
+$height-header: 45px;
+
+header {
+    width: 100%;
+    height: $height-header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: ($items-margin *4);
+
+    .contentLeft {
+        display: inherit;
+        gap: inherit;
+
+        .logo {
+            color: $white-color;
+            font-size: $font-big;
+            font-weight: bold;
+        }
+
+
+        .itemsHeader {
+            height: 100%;
+            display: inherit;
+            align-items: inherit;
+
+            ul {
+                height: 100%;
+                list-style: none;
+                padding: 0;
+                color: $white-color;
+                display: inherit;
+                gap: ($items-margin*2);
+
+                li {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
+                    text-align: center;
+                    transition: 0.2s all;
+                }
+
+                li::after {
+                    content: '';
+                    width: 0%;
+                    height: 2px;
+                    position: absolute;
+                    bottom: 0;
+                    background-color: $white-color;
+                    border-radius: $border-radius;
+                    transition: 0.2s all;
+                }
+
+                li:hover {
+                    opacity: 0.8;
+                }
+
+                li:hover::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .perfil {
+        min-width: 150px;
+        height: 100%;
+        display: inherit;
+        align-items: center;
+        justify-content: space-between;
+        color: $white-color;
+        gap: $items-padding;
+
+        .perfilPicture {
+            width: $height-header;
+            height: inherit;
+            border-radius: 50%;
+            border: 1px solid $white-color;
+            transition: 0.5s all;
+        }
+
+        .perfilPicture:hover {
+            opacity: 0.5;
+            backdrop-filter: blur(5px);
+        }
+
+        .perfiName {
+            span {
+                display: block;
+            }
+
+            span:first-child {
+                font-size: $font-regular;
+            }
+
+            span:last-child {
+                font-size: $font-tiny;
+                text-align: right;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .itemsHeader ul li,
+    .perfil .perfilPicture {
+        cursor: pointer;
+    }
+}

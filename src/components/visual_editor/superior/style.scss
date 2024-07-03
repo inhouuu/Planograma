@@ -1,0 +1,27 @@
+@use 'sass:math';
+@import '../../../app/globals.scss';
+
+#cvSuperior,
+#cvTemp {
+    width: inherit;
+    height: inherit;
+    box-shadow: 1px 1px 5px 0px $shadow-tertiary;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+    border-radius: $border-radius;
+}
+
+#cvTemp {
+    z-index: 2;
+}
+
+.grab {
+    cursor: grab;
+}
+
+.grabbing {
+    cursor: grabbing;
+}

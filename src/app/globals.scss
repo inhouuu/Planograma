@@ -1,0 +1,69 @@
+//BACKGROUND PAGE
+$background-color: #181818; //181818
+
+//COLORS UTILITIES
+$primary-color: #0FCAF0;
+;
+$secondary-color: #292929;
+$tertiary-color: #173138;
+$select-color: #173138;
+$white-color: #FFF;
+$black-color: #000000;
+$gray-color: #ECEDEE;
+$gray-color-secondary: #F6F6F6;
+$gray-color-tertiary: #E2E2E2;
+$gray-color-quartenary: #F9F9F9;
+
+//COLORS FONT
+$font-white: #FFF;
+$font-black: #252526; //292929
+$font-gray: #C6C6C6;
+$font-gray-secondary: #8D8D8E;
+$font-gray-tertiary: #585858;
+
+//SHADOW COLOR
+$shadow-primary: #00000034;
+$shadow-secondary: rgba(0, 0, 0, 0.50);
+$shadow-tertiary: rgba(18, 18, 18, 0.481);
+
+//FONT SIZE
+$font-very: 48px;
+$font-larger: 32px;
+$font-big: 18px;
+$font-regular: 16px;
+$font-small: 14px;
+$font-tiny: 12px;
+
+//SPACING GLOBAL
+$default-margin: 15%;
+$items-margin: 20px;
+$items-padding: 8px;
+
+//BORDER SIZE
+$border-radius: 10px;
+
+//PALETTE COLOR COMPONENTES
+$red: #FF5656;
+$green: #00C292;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    user-select: none;
+
+    path {
+        transition: 0.5s all;
+    }
+
+    rect {
+        transition: 0.2s all;
+    }
+
+    body {
+        height: 100vh;
+        padding: $items-margin;
+        position: relative;
+        overflow: hidden;
+        background-color: $background-color;
+    }
+}

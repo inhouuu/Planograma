@@ -1,0 +1,36 @@
+{
+    "palette_color": [
+        {
+            "IndianRed": "#D73858",
+            "HoneyDew": "#E3EEE6",
+            "Linen": "#F2E9E2",
+            "PaleVioletRed": "#F1879B",
+            "DarkCyan": "#138D74",
+            "AliceBlue": "#D7E2DC",
+            "Beige": "#F6F1DE",
+            "LightPink": "#DC97B6",
+            "Sienna": "#856A35",
+            "LightBlue": "#9FD0D4",
+            "NavajoWhite": "#FBD8A0",
+            "Pink": "#F1C7D1",
+            "DarkKhaki": "#B7B345",
+            "MediumTurquoise": "#51C2C6",
+            "MistyRose": "#DFB6BC",
+            "Silver": "#B9BABF",
+            "LightSeaGreen": "#31B79C",
+            "Peru": "#D4892E",
+            "DarkGray": "#C7AFAD",
+            "Gainsboro": "#B8B1B8",
+            "Teal": "#0792A9",
+            "Coral": "#F68237",
+            "RosyBrown": "#A17C8D",
+            "CornflowerBlue": "#E26247",
+            "MediumOrchid": "#A957A1",
+            "Brown": "#7C2C2F",
+            "DodgerBlue": "#057AAF",
+            "FireBrick": "#CF302D",
+            "SaddleBrown": "#7C2F51",
+            "Tomato": "#B65254"
+        }
+    ]
+}

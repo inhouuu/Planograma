@@ -1,0 +1,33 @@
+@use 'sass:math';
+@import '../../../app/globals.scss';
+
+#cvFrontal {
+    border: 1px solid $shadow-primary;
+    box-shadow: 1px 1px 5px 0px $shadow-tertiary;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+}
+
+#cvAdress {
+    z-index: 2;
+}
+
+#cvProducts {
+    z-index: 3;
+}
+
+#cvFrontal,
+#cvAdress,
+#cvProducts {
+    position: absolute;
+}
+
+.grabbing {
+    cursor: grabbing;
+}
+
+.grab {
+    cursor: grab;
+}

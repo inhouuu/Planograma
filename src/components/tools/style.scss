@@ -1,0 +1,48 @@
+@use 'sass:math';
+@import '../../app/globals.scss';
+
+//HEADER DIMENSION
+$width-tools: 60px;
+
+.tools {
+    width: $width-tools;
+    height: inherit;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $items-padding;
+    color: $font-black;
+    background-color: $secondary-color;
+    // box-shadow: 2px 2px 5px 0px $black-color;
+    border-radius: $border-radius;
+    z-index: 6;
+
+    .items {
+        height: 100%;
+        display: inherit;
+        flex-direction: inherit;
+        gap: $items-margin;
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: $items-padding;
+            cursor: pointer;
+            transition: 0.3s all;
+            border-radius: $border-radius;
+            box-shadow: 1px 1px 1px 0px transparent;
+            border: 1px solid transparent;
+        }
+
+        .select {
+            opacity: 0.5;
+            border: 1px solid $white-color;
+        }
+
+        div:hover {
+            opacity: 0.5;
+        }
+    }
+}
