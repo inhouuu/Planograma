@@ -35,7 +35,7 @@ export default function Header() {
 
     return (
         <>
-            <div className='tools' ref={refTools}>
+            <aside className='tools' ref={refTools}>
                 <div className='items'>
                     <div className={`square ${form == 'square' ? 'select' : null}`} onClick={() => {
                         setForm('square');
@@ -84,7 +84,7 @@ export default function Header() {
 
                 <div className='colors'>
                 </div>
-            </div >
+            </aside >
         </>
     )
 }

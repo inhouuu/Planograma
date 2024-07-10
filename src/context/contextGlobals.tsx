@@ -5,20 +5,21 @@ export const GlobalContext: any = createContext({});
 
 export const GlobalProvider = ({ children }: any) => {
     const [colorsPalette, setColorsPalette]: any = useState([]);
-    const [color, setColor]: any = useState('');
+    // const [color, setColor]: any = useState('');
     const [action, setAction]: any = useState('');
     const [form, setForm]: any = useState('');
-    const [save, setSave]: any = useState(false);
-    const [products, setProducts]: any = useState([]);
-    const [hide, setHide]: any = useState(true);
+    // const [save, setSave]: any = useState(false);
+    // const [products, setProducts]: any = useState([]);
+    // const [hide, setHide]: any = useState(true);
     const [ctxMenu, setCtxMenu]: any = useState({});
-    const [moduloSelect, setModuloSelect]: any = useState({});
-    const [productSelect, setProductSelect]: any = useState({});
-    const [address, setAddress]: any = useState([]);
-    const [productsMask, setProductsMask]: any = useState([]);
-    const [file, setFile]: any = useState({});
+    // const [moduloSelect, setModuloSelect]: any = useState({});
+    // const [productSelect, setProductSelect]: any = useState({});
+    // const [address, setAddress]: any = useState([]);
+    // const [productsMask, setProductsMask]: any = useState([]);
+    // const [file, setFile]: any = useState({});
     const [supCoords, setSupCoords]: any = useState([]);
     const [formSelect, setFormSelect]: any = useState({});
+    const [modalToggle, setModalToggle]: any = useState(false);
 
     //LER PALLETA DE CORES JSON
     useEffect(() => {
@@ -36,33 +37,35 @@ export const GlobalProvider = ({ children }: any) => {
     const paramsValues: Object = {
         action,
         setAction,
-        colorsPalette,
-        color,
-        setColor,
+        // colorsPalette,
+        // color,
+        // setColor,
         form,
         setForm,
-        save,
-        setSave,
-        products,
-        setProducts,
-        hide,
-        setHide,
+        // save,
+        // setSave,
+        // products,
+        // setProducts,
+        // hide,
+        // setHide,
         ctxMenu,
         setCtxMenu,
-        setModuloSelect,
-        moduloSelect,
-        productSelect,
-        setProductSelect,
-        address,
-        setAddress,
-        productsMask,
-        setProductsMask,
-        file,
-        setFile,
+        // setModuloSelect,
+        // moduloSelect,
+        // productSelect,
+        // setProductSelect,
+        // address,
+        // setAddress,
+        // productsMask,
+        // setProductsMask,
+        // file,
+        // setFile,
         supCoords,
         setSupCoords,
         formSelect,
-        setFormSelect
+        setFormSelect,
+        setModalToggle,
+        modalToggle
     }
 
     return <GlobalContext.Provider value={paramsValues}>{children}</GlobalContext.Provider>;

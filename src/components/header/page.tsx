@@ -1,11 +1,14 @@
 'use client'
-import './style.scss'
+import './style.scss';
 import Image from 'next/image';
-
+import { GlobalContext } from '@/context/contextGlobals';
+import { useContext } from 'react';
 //IMAGEM
 import imgPerfil from '@/icons/finn perfil.png';
 
 export default function Header({ response }: any) {
+    let { setModalToggle, modalToggle }: any = useContext(GlobalContext);
+
     //DOM ELEMENTO MAIN
     return (
         <header>
@@ -24,7 +27,7 @@ export default function Header({ response }: any) {
                             Slot
                         </li>
 
-                        <li>
+                        <li onClick={() => setModalToggle(true)}>
                             Editar Módulos
                         </li>
 

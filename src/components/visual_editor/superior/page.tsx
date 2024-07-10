@@ -4,9 +4,10 @@ import './style.scss'
 import { useEffect, useRef, useContext, useCallback } from 'react'
 import { GlobalContext } from '@/context/contextGlobals';
 import Paper from 'paper';
-export default function Superior({ superior, modulos }: any) {
+export default function Superior() {
+
     //VÁRIAVEIS GLOBAIS
-    const { form, color, supCoords, setSupCoords, formSelect, setFormSelect, action }: any = useContext(GlobalContext);
+    const { form, color, supCoords, setSupCoords, formSelect, setFormSelect, action, setCtxMenu, ctxMenu }: any = useContext(GlobalContext);
 
     //DOM CANVAS 
     const domSuperior: any = useRef();
@@ -142,7 +143,9 @@ export default function Superior({ superior, modulos }: any) {
                         width: coord.w,
                         height: coord.h,
                         fillColor: 'red'
-                    });
+                    }).selected = false;
+
+                    //NOME DOS MÓDULOS
                     // console.log('coord.x', coord.w)
                     // var text = new Paper.PointText({
                     //     point: [coord.x, coord.y],
@@ -231,6 +234,7 @@ export default function Superior({ superior, modulos }: any) {
                     y = event.clientY - rect.top;
 
                 if (mouseInside(x, y)?.find((e: any) => e === true)) {
+                    console.log('teste')
                     cvTemp.classList.add('grabbing');
                     dragging = true;
                 }
@@ -257,7 +261,7 @@ export default function Superior({ superior, modulos }: any) {
                             width: tempCoords.w,
                             height: tempCoords.h,
                             fillColor: 'red'
-                        });
+                        }).selected = true;
                     }
 
                     //CIRCULO
@@ -355,7 +359,66 @@ export default function Superior({ superior, modulos }: any) {
                 // drawAtt();
             }
         });
-    })
+
+        const menuActive: any = (event: any) => {
+            event.preventDefault();
+            console.log('mouse', event.layerX)
+            if (mouseInside(event.layerX, event.layerY)?.find((e: any) => e === true)) {
+                setCtxMenu({
+                    top: `${event.y}px`,
+                    left: `${event.x}px`,
+                    visibility: 'visible',
+                    posY: event.layerY,
+                    active: true
+                });
+            }
+        };
+
+        const menuDisable = (event: any) => {
+            event.preventDefault();
+            if (event.button === 0) {
+                if (ctxMenu.active) {
+                    setCtxMenu({
+                        top: `${event.y}px`,
+                        left: `${event.x}px`,
+                        visibility: 'hidden',
+                        display: 'none',
+                        posY: event.y,
+                        active: false
+                    });
+                }
+            }
+        };
+
+        //ADD CTXMENU
+        cvTemp.addEventListener('contextmenu', menuActive);
+        cvTemp.addEventListener('mousedown', menuDisable);
+
+        return () => {
+            cvTemp.removeEventListener('contextmenu', menuActive);
+            cvTemp.removeEventListener('mousedown', menuDisable);
+        };
+        // GRID CANVAS
+        // var drawGridLines = function (num_rectangles_wide: any, num_rectangles_tall: any, boundingRect: any) {
+        //     var width_per_rectangle = boundingRect.width / num_rectangles_wide;
+        //     var height_per_rectangle = boundingRect.height / num_rectangles_tall;
+        //     for (var i = 0; i <= num_rectangles_wide; i++) {
+        //         var xPos = boundingRect.left + i * width_per_rectangle;
+        //         var topPoint = new Paper.Point(xPos, boundingRect.top);
+        //         var bottomPoint = new Paper.Point(xPos, boundingRect.bottom);
+        //         var aLine: any = new Paper.Path.Line(topPoint, bottomPoint);
+        //         aLine.strokeColor = 'black';
+        //     }
+        //     for (var i = 0; i <= num_rectangles_tall; i++) {
+        //         var yPos = boundingRect.top + i * height_per_rectangle;
+        //         var leftPoint = new Paper.Point(boundingRect.left, yPos);
+        //         var rightPoint = new Paper.Point(boundingRect.right, yPos);
+        //         var aLine: any = new Paper.Path.Line(leftPoint, rightPoint);
+        //         aLine.strokeColor = 'black';
+        //     }
+        // }
+        // drawGridLines(80, 40, Paper.view.bounds);
+    }, [supCoords, action])
 
     return (
         <>

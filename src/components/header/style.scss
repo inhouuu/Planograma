@@ -48,9 +48,9 @@ header {
                 li::after {
                     content: '';
                     width: 0%;
-                    height: 2px;
+                    height: 1.5px;
                     position: absolute;
-                    bottom: 0;
+                    bottom: -3px;
                     background-color: $white-color;
                     border-radius: $border-radius;
                     transition: 0.2s all;

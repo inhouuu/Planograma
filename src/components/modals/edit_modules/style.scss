@@ -1,0 +1,377 @@
+@use 'sass:math';
+@import '../../../app/globals.scss';
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    z-index: 7;
+    transition: 0.5s all;
+    display: flex;
+    justify-content: center;
+
+    .center {
+        position: absolute;
+        // bottom: 100%;
+        width: 50%;
+        height: 100%;
+        transition: 0.5s all;
+        display: inherit;
+        align-items: center;
+
+        .edit {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: $border-radius;
+            background-color: $background-color;
+            color: $white-color;
+            padding: $items-margin;
+
+            .editHeader {
+                position: relative;
+                padding: $items-padding 0;
+                display: flex;
+                justify-content: space-between;
+
+                .editClose {
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                    color: $white-color;
+                    font-size: $font-larger;
+                    transition: 0.5s all;
+                }
+
+                .editClose:hover {
+                    color: $red;
+                }
+            }
+
+            .editHeader::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                bottom: 0;
+                background-color: $white-color;
+                border-radius: $border-radius;
+                opacity: 0.3;
+            }
+
+
+
+            .editMain {
+                display: flex;
+                flex-direction: column;
+                gap: $items-margin;
+
+                .inputLine {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: $items-margin;
+                    width: 100%;
+
+                    .data_field:nth-child(1) {
+                        flex-grow: 2;
+                    }
+
+                    .data_field:nth-child(2) {
+                        flex-grow: 3;
+                        width: 50%;
+                    }
+
+                    .data_field:nth-child(3) {
+                        flex-grow: 0;
+                    }
+
+                    .data_field:nth-child(4) {
+                        flex-grow: 1;
+                    }
+
+                    .data_field:nth-child(5) {
+                        flex-grow: 1;
+                    }
+                }
+
+                .data_field {
+                    height: auto;
+                    position: relative;
+
+
+                    .modulos {
+                        cursor: pointer;
+
+                        #options {
+                            width: inherit;
+                            height: 0px;
+                            position: absolute;
+                            opacity: 0.9;
+                            left: 0;
+                            top: 100%;
+                            border: none;
+                            transition: 0.2s all;
+                            z-index: 2;
+                            background-color: $background-color;
+                            overflow-y: scroll;
+
+                            span {
+                                display: block;
+                                cursor: pointer;
+                                transition: inherit;
+                                padding: $items-padding;
+                            }
+
+                            span:hover {
+                                background-color: $gray-color;
+                            }
+                        }
+
+                        #options::-webkit-scrollbar {
+                            width: 5px;
+                            background: $background-color;
+
+                        }
+
+                        #options::-webkit-scrollbar-thumb {
+                            background: $shadow-tertiary;
+                            border-radius: $border-radius;
+                        }
+                    }
+
+                    .select {
+                        #options {
+                            opacity: 1;
+                            height: 120px;
+                            border: 1px solid $gray-color-tertiary;
+                        }
+                    }
+
+                    input,
+                    .modulos {
+                        width: 100%;
+                        z-index: 1;
+
+                    }
+
+                    input,
+                    .modulos {
+                        height: 32px;
+                        background-color: inherit;
+                        outline: none;
+                        z-index: 1;
+                        padding: $items-padding;
+                        border: 1px solid $gray-color-tertiary;
+
+                    }
+
+                    input,
+                    .modulos,
+                    .modulos #options {
+                        font-size: $font-tiny;
+                        color: $font-black;
+                        border-radius: math.div($border-radius, 2);
+                        color: $white-color;
+                    }
+
+                    .name {
+                        display: inline;
+                        width: auto;
+                        height: 18px;
+                        position: absolute;
+                        top: -6px;
+                        left: $items-padding;
+                        background-color: $background-color;
+                        font-size: $font-tiny;
+                        padding: 0 2px;
+                        text-align: center;
+                        color: $font-gray;
+                        z-index: 2;
+                    }
+
+                }
+
+                .measure {
+                    display: flex;
+                    gap: $items-margin;
+
+                    .field {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: $items-padding;
+
+                        .arrow_range {
+                            transform: rotateZ(90deg);
+                            margin-left: -7px;
+                        }
+
+                        .data_field {
+                            .modulos {
+                                cursor: pointer;
+                            }
+
+                            .name {
+                                width: auto;
+                                height: 18px;
+                                position: relative;
+                                top: 10px;
+                                left: $items-padding;
+                                background-color: $background-color;
+                                font-size: $font-tiny;
+                                text-align: center;
+                                color: $font-gray;
+                            }
+                        }
+
+                        .icon {
+                            position: relative;
+                            top: 7px;
+                        }
+                    }
+                }
+
+                .validation_active {
+                    .name {
+                        color: $red;
+                        transition: 0.2s all;
+
+                    }
+
+                    .modulos {
+                        border: 1px solid $red;
+                        transition: 0.2s all;
+                    }
+                }
+
+                #palette_color {
+                    margin-top: $items-margin;
+
+                    h3 {
+                        color: $font-black;
+                        text-decoration: none;
+                        margin-bottom: $items-padding;
+                    }
+
+                    .group_colors {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: $items-padding;
+
+                        .color {
+                            width: 24px;
+                            height: 24px;
+                            border-radius: math.div($border-radius, 2);
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .arrow {
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: 0.2s all;
+                            }
+                        }
+
+                        .selectColor {
+                            .arrow {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+
+                .card_line {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    .nivel {
+                        background: #09242C;
+                        border-radius: 15px;
+                        padding: 5px;
+                        color: white;
+                    }
+                }
+
+                .info_product {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 10px;
+                }
+            }
+
+            .editHeader,
+            .editMain {
+                margin-bottom: $items-margin;
+            }
+
+            .editFooter {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                position: relative;
+
+                button {
+                    border: 1px solid red;
+                    padding-top: $items-padding;
+                    border: none;
+                    cursor: pointer;
+                    background-color: $background-color;
+                    font-family: inherit;
+                    transition: 0.5s all;
+                    display: inherit;
+                    align-items: center;
+                    gap: $items-padding;
+                    span {
+                        color: $white-color;
+                        font-size: $font-big;
+                        transition: 0.5s all;
+                    }
+                    span:last-child{
+                        font-size: 24px;
+                    }
+                }
+
+                button:hover {
+                    span{
+                        color: $green;
+                    }
+                }
+            }
+
+            .editFooter::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                top: 0;
+                background-color: $white-color;
+                border-radius: $border-radius;
+                opacity: 0.3;
+            }
+        }
+    }
+}
+
+.backdrop::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $black-color;
+    opacity: 0.8;
+    filter: blur(10px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

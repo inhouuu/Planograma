@@ -1,0 +1,59 @@
+@use 'sass:math';
+@import '../../../app/globals.scss';
+
+.context_menu {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    background-color: $white-color;
+    border-radius: $border-radius;
+    border: 1px solid $shadow-primary;
+    box-shadow: 1px 1px 5px 0px $shadow-tertiary;
+    visibility: hidden;
+    transition: 0.5s all;
+    z-index: 5;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        transition: inherit;
+        cursor: pointer;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: $items-padding;
+            padding: $items-padding;
+            transition: inherit;
+
+            .ctxBtns {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: $items-padding;
+                gap: $items-padding;
+
+                button {
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    border: 1px solid $gray-color;
+                    cursor: pointer;
+                    transition: inherit;
+                }
+
+                button:hover {
+                    background-color: $gray-color-secondary;
+                    box-shadow: 1px 1px 5px 0px $shadow-tertiary;
+                }
+            }
+        }
+
+        li:hover {
+            background-color: $gray-color;
+        }
+    }
+}
