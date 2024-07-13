@@ -63,8 +63,6 @@
                 opacity: 0.3;
             }
 
-
-
             .editMain {
                 display: flex;
                 flex-direction: column;
@@ -96,6 +94,7 @@
                     .data_field:nth-child(5) {
                         flex-grow: 1;
                     }
+
                 }
 
                 .data_field {
@@ -176,6 +175,7 @@
                         color: $font-black;
                         border-radius: math.div($border-radius, 2);
                         color: $white-color;
+                        padding: 16px;
                     }
 
                     .name {
@@ -193,6 +193,9 @@
                         z-index: 2;
                     }
 
+                    input[type="text"]:disabled {
+                        opacity: 0.5;
+                    }
                 }
 
                 .measure {
@@ -248,11 +251,30 @@
                     }
                 }
 
+                .card_line {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    .nivel {
+                        background: #09242C;
+                        border-radius: 15px;
+                        padding: 5px;
+                        color: white;
+                    }
+                }
+
+                .info_product {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 10px;
+                }
+
                 #palette_color {
                     margin-top: $items-margin;
 
                     h3 {
-                        color: $font-black;
+                        color: $white-color;
                         text-decoration: none;
                         margin-bottom: $items-padding;
                     }
@@ -286,25 +308,6 @@
                         }
                     }
                 }
-
-                .card_line {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-
-                    .nivel {
-                        background: #09242C;
-                        border-radius: 15px;
-                        padding: 5px;
-                        color: white;
-                    }
-                }
-
-                .info_product {
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 10px;
-                }
             }
 
             .editHeader,
@@ -329,18 +332,20 @@
                     display: inherit;
                     align-items: center;
                     gap: $items-padding;
+
                     span {
                         color: $white-color;
                         font-size: $font-big;
                         transition: 0.5s all;
                     }
-                    span:last-child{
+
+                    span:last-child {
                         font-size: 24px;
                     }
                 }
 
                 button:hover {
-                    span{
+                    span {
                         color: $green;
                     }
                 }
@@ -372,6 +377,6 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }

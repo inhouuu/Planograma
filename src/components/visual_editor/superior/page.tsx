@@ -46,69 +46,69 @@ export default function Superior() {
     }
 
     //PAPER JS
-    useEffect(() => {
-        // Paper.setup(domSuperior.current);
-        //ADD POINT (X,Y)
-        // var myPoint = new Paper.Point(100, 210);
+    // useEffect(() => {
+    //     // Paper.setup(domSuperior.current);
+    //     //ADD POINT (X,Y)
+    //     // var myPoint = new Paper.Point(100, 210);
 
-        //ADD SIZE (WIDTH, HEIGHT)
-        // var mySize = new Paper.Size(100, 210);
-
-
-        // domSuperior.current.addEventListener('mousedown', (event: any) => {
-        //     const rect: any = new Paper.Path.Rectangle({
-        //         x: 50,
-        //         y: 100,
-        //         width: 100,
-        //         height: 100,
-        //         fillColor: 'red'
-        //     });
-        // })
+    //     //ADD SIZE (WIDTH, HEIGHT)
+    //     // var mySize = new Paper.Size(100, 210);
 
 
-        // var circ = new Paper.Path.Circle({
-        //     x: 100,
-        //     y: 100,
-        //     // center: 500,
-        //     radius: 40,
-        //     strokeColor: 'black'
-        // });
+    //     // domSuperior.current.addEventListener('mousedown', (event: any) => {
+    //     //     const rect: any = new Paper.Path.Rectangle({
+    //     //         x: 50,
+    //     //         y: 100,
+    //     //         width: 100,
+    //     //         height: 100,
+    //     //         fillColor: 'red'
+    //     //     });
+    //     // })
 
 
-        // var myPath: any = new Paper.Path();
-        // myPath.strokeColor = 'yellow';
+    //     // var circ = new Paper.Path.Circle({
+    //     //     x: 100,
+    //     //     y: 100,
+    //     //     // center: 500,
+    //     //     radius: 40,
+    //     //     strokeColor: 'black'
+    //     // });
 
-        //CRIA PONTOS
-        // myPath.add(new Paper.Point(0, 0));
-        // myPath.add(new Paper.Point(100, 50));
 
-        //CRIA UMA INTERSECÇÃO DA RETA SELECIONADA
-        // myPath.insert(1, new Paper.Point(30, 50));
+    //     // var myPath: any = new Paper.Path();
+    //     // myPath.strokeColor = 'yellow';
 
-        //CLONAR ITEM COMPLETO
-        // var copy = myPath.clone();
+    //     //CRIA PONTOS
+    //     // myPath.add(new Paper.Point(0, 0));
+    //     // myPath.add(new Paper.Point(100, 50));
 
-        //ADICIONAR PONTOS DE INTERSECÇÃO (VISUALMENTE)
-        // myPath.fullySelected = true;
+    //     //CRIA UMA INTERSECÇÃO DA RETA SELECIONADA
+    //     // myPath.insert(1, new Paper.Point(30, 50));
 
-        //SUAVIZAR BORDAS
-        // myPath.smooth();
+    //     //CLONAR ITEM COMPLETO
+    //     // var copy = myPath.clone();
 
-        //ENCONTRA O MENOR CAMINHO E FECHA OS PONTOS
-        // myPath.closed = true;
+    //     //ADICIONAR PONTOS DE INTERSECÇÃO (VISUALMENTE)
+    //     // myPath.fullySelected = true;
 
-        //SELECIONAR FORMA
-        // myPath.selected = true;
+    //     //SUAVIZAR BORDAS
+    //     // myPath.smooth();
 
-        //REMOVER INTERSECÇÃO
-        // myPath.removeSegment(1);
+    //     //ENCONTRA O MENOR CAMINHO E FECHA OS PONTOS
+    //     // myPath.closed = true;
 
-        //REMOVER ITEM COMPLETO
-        // myPath.remove();
+    //     //SELECIONAR FORMA
+    //     // myPath.selected = true;
 
-        //ADICIONAR PONTO
-        // rect.add(myPoint);
-    })
+    //     //REMOVER INTERSECÇÃO
+    //     // myPath.removeSegment(1);
+
+    //     //REMOVER ITEM COMPLETO
+    //     // myPath.remove();
+
+    //     //ADICIONAR PONTO
+    //     // rect.add(myPoint);
+    // })
 
     //CANVAS VANILA
     useEffect(() => {
@@ -146,20 +146,23 @@ export default function Superior() {
                     }).selected = false;
 
                     //NOME DOS MÓDULOS
-                    // console.log('coord.x', coord.w)
-                    // var text = new Paper.PointText({
-                    //     point: [coord.x, coord.y],
-                    //     content: 'The contents of the point text',
-                    //     fillColor: 'black',
-                    //     fontFamily: 'Courier New',
-                    //     fontWeight: 'bold',
-                    //     fontSize: 20
-                    // });
-                    // console.log('text', text.content.length)
-                    // text.justification = 'left';
-                    // text.content = 'The contents of the point text';
+                    let styleFont = {
+                        fontSize: '20px',
+                        fontFamily: 'Arial',
+                        fontWeight: 'Bold'
+                    }
+
+                    let ctxName: any = domSuperior.current.getContext("2d");
+                    ctxName.font = `${styleFont.fontWeight} ${styleFont.fontSize} ${styleFont.fontFamily}`;
+                    let measureText: any = ctxName.measureText(coord.name);
+
+                    let text: any = new Paper.PointText({
+                        point: [coord.x + ((coord.w - measureText.width) / 2), coord.y + coord.h / 2],
+                        content: coord.name,
+                        fillColor: 'black',
+                        ...styleFont 
+                    });
                 }
-                // awesometext.content = 'awesome';
             }
         }
 
@@ -222,6 +225,7 @@ export default function Superior() {
                 tempCoords.y0 = event.layerY;
                 tempCoords.color = `${color}`
                 tempCoords.id = new Date().getTime();
+                tempCoords.type = 'form';
                 console.log('form', form);
             }
 
@@ -324,11 +328,9 @@ export default function Superior() {
             if (action === 'form') {
                 if (started) {
                     started = false;
-                    // if (tempCoords.w > 20 || tempCoords.h > 20 || tempCoords.r > 10) {
-                    // ctxSuperior.drawImage(cvTemp, 0, 0);
-                    // ctxTemp?.clearRect(0, 0, cvTemp.width, cvTemp.height);
-                    setSupCoords([...supCoords, tempCoords]);
-                    // }
+                    if (tempCoords.w > 20 || tempCoords.h > 20 || tempCoords.r > 10) {
+                        setSupCoords([...supCoords, tempCoords]);
+                    }
                 }
             }
 
@@ -358,6 +360,19 @@ export default function Superior() {
                 }
                 // drawAtt();
             }
+
+            if (event.button === 0) {
+                if (ctxMenu.active) {
+                    setCtxMenu({
+                        top: `${event.y}px`,
+                        left: `${event.x}px`,
+                        visibility: 'hidden',
+                        display: 'none',
+                        posY: event.y,
+                        active: false
+                    });
+                }
+            }
         });
 
         const menuActive: any = (event: any) => {
@@ -374,30 +389,13 @@ export default function Superior() {
             }
         };
 
-        const menuDisable = (event: any) => {
-            event.preventDefault();
-            if (event.button === 0) {
-                if (ctxMenu.active) {
-                    setCtxMenu({
-                        top: `${event.y}px`,
-                        left: `${event.x}px`,
-                        visibility: 'hidden',
-                        display: 'none',
-                        posY: event.y,
-                        active: false
-                    });
-                }
-            }
-        };
-
         //ADD CTXMENU
         cvTemp.addEventListener('contextmenu', menuActive);
-        cvTemp.addEventListener('mousedown', menuDisable);
 
         return () => {
             cvTemp.removeEventListener('contextmenu', menuActive);
-            cvTemp.removeEventListener('mousedown', menuDisable);
         };
+
         // GRID CANVAS
         // var drawGridLines = function (num_rectangles_wide: any, num_rectangles_tall: any, boundingRect: any) {
         //     var width_per_rectangle = boundingRect.width / num_rectangles_wide;
@@ -418,7 +416,7 @@ export default function Superior() {
         //     }
         // }
         // drawGridLines(80, 40, Paper.view.bounds);
-    }, [supCoords, action])
+    })
 
     return (
         <>

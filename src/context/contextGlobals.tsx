@@ -19,7 +19,8 @@ export const GlobalProvider = ({ children }: any) => {
     // const [file, setFile]: any = useState({});
     const [supCoords, setSupCoords]: any = useState([]);
     const [formSelect, setFormSelect]: any = useState({});
-    const [modalToggle, setModalToggle]: any = useState(false);
+    const [planToggle, setPlanToggle]: any = useState(false);
+    const [descToggle, setDescToggle]: any = useState(true);
 
     //LER PALLETA DE CORES JSON
     useEffect(() => {
@@ -37,7 +38,7 @@ export const GlobalProvider = ({ children }: any) => {
     const paramsValues: Object = {
         action,
         setAction,
-        // colorsPalette,
+        colorsPalette,
         // color,
         // setColor,
         form,
@@ -64,8 +65,10 @@ export const GlobalProvider = ({ children }: any) => {
         setSupCoords,
         formSelect,
         setFormSelect,
-        setModalToggle,
-        modalToggle
+        setPlanToggle,
+        planToggle,
+        descToggle,
+        setDescToggle
     }
 
     return <GlobalContext.Provider value={paramsValues}>{children}</GlobalContext.Provider>;

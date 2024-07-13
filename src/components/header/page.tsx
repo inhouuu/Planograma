@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import imgPerfil from '@/icons/finn perfil.png';
 
 export default function Header({ response }: any) {
-    let { setModalToggle, modalToggle }: any = useContext(GlobalContext);
+    let { setPlanToggle, modalToggle }: any = useContext(GlobalContext);
 
     //DOM ELEMENTO MAIN
     return (
@@ -27,7 +27,7 @@ export default function Header({ response }: any) {
                             Slot
                         </li>
 
-                        <li onClick={() => setModalToggle(true)}>
+                        <li onClick={() => setPlanToggle(true)}>
                             Editar Módulos
                         </li>
 

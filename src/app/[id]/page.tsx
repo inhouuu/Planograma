@@ -4,7 +4,6 @@ import { useContext, lazy, useEffect, useRef } from 'react';
 import { ContextApi, bridge } from '@/context/contextApi';
 import EditorVisual from '@/components/visual_editor/page'
 import EditModules from '@/components/modals/edit_modules/page';
-// import ContextMenu from '@/components/modals/context_menu/page';
 import ContextMenu from '@/components/modals/context_menu/page';
 
 export default function Id({ params }: any) {
@@ -29,7 +28,7 @@ export default function Id({ params }: any) {
     return (
         <main ref={refMain}>
             <ContextMenu />
-            <EditModules refMain={refMain} />
+            <EditModules />
             <EditorVisual response={params} />
         </main>
     )
