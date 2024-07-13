@@ -14,7 +14,6 @@ $width-tools: 60px;
     padding: $items-padding;
     color: $font-black;
     background-color: $secondary-color;
-    // box-shadow: 2px 2px 5px 0px $black-color;
     border-radius: $border-radius;
     z-index: 6;
 
@@ -41,8 +40,60 @@ $width-tools: 60px;
             border: 1px solid $white-color;
         }
 
-        div:hover {
+        div:hover:not(div:nth-child(4)) {
             opacity: 0.5;
+        }
+
+        .palette {
+            color: $white-color;
+            position: relative;
+
+            span {
+                font-size: 30px;
+            }
+
+            .colors {
+                display: flex;
+                gap: $items-padding;
+                flex-wrap: wrap;
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                top: 0;
+                left: $width-tools;
+                overflow: hidden;
+                background-color: $background-color;
+                padding: 0;
+                transition: 0.1s all;
+                opacity: 0;
+                justify-content: flex-start;
+
+                .color {
+                    z-index: 9;
+                    margin: 0;
+                    border: none;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+
+
+            .colors:hover {
+                opacity: 1;
+            }
+        }
+
+        .selectPalette {
+            border: 1px solid $white-color;
+
+            .colors {
+                flex-wrap: wrap;
+                width: 340px;
+                height: 120px;
+                opacity: 1;
+                padding: $items-padding;
+            }
+
         }
     }
 }

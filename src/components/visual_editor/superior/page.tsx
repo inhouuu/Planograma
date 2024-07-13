@@ -45,6 +45,33 @@ export default function Superior() {
             })
     }
 
+    function textPrint(coords: any) {
+        console.log('paper', Paper)
+        let styleFont = {
+            fontSize: '20px',
+            fontFamily: 'Arial',
+            fontWeight: 'Bold'
+        }
+
+        let ctxName: any = domSuperior.current.getContext("2d");
+        ctxName.font = `${styleFont.fontWeight} ${styleFont.fontSize} ${styleFont.fontFamily}`;
+        let measureText: any = ctxName.measureText(coords.name);
+
+        let text: any = new Paper.PointText({
+            point: coords.r ? [coords.x - (measureText.width / 2), coords.y + (measureText.width / coords.name?.length)] : [coords.x + ((coords.w - measureText.width) / 2), coords.y + ((coords.h + (measureText.width / coords.name?.length)) / 2)],
+            content: coords.name,
+            fillColor: 'black',
+            // justification: 'center',
+            // selected: true,
+            ...styleFont
+        });
+        if (coords.w > coords.h) {
+            text.rotate(0)
+        } else {
+            text.rotate(90)
+        }
+    }
+
     //PAPER JS
     // useEffect(() => {
     //     // Paper.setup(domSuperior.current);
@@ -137,32 +164,15 @@ export default function Superior() {
                         fillColor: 'yellow'
                     });
                 } else {
-                    let rect = new Paper.Path.Rectangle({
+                    new Paper.Path.Rectangle({
                         x: coord.x,
                         y: coord.y,
                         width: coord.w,
                         height: coord.h,
                         fillColor: 'red'
-                    }).selected = false;
-
-                    //NOME DOS MÓDULOS
-                    let styleFont = {
-                        fontSize: '20px',
-                        fontFamily: 'Arial',
-                        fontWeight: 'Bold'
-                    }
-
-                    let ctxName: any = domSuperior.current.getContext("2d");
-                    ctxName.font = `${styleFont.fontWeight} ${styleFont.fontSize} ${styleFont.fontFamily}`;
-                    let measureText: any = ctxName.measureText(coord.name);
-
-                    let text: any = new Paper.PointText({
-                        point: [coord.x + ((coord.w - measureText.width) / 2), coord.y + coord.h / 2],
-                        content: coord.name,
-                        fillColor: 'black',
-                        ...styleFont 
                     });
                 }
+                textPrint(coord);
             }
         }
 
@@ -178,43 +188,27 @@ export default function Superior() {
         function drawMove(dx: any, dy: any) {
             Paper.setup(domSuperior.current);
             for (let coord of supCoords) {
-                if (coord.r) {
-                    if (formSelect.id !== coord.id) {
-                        new Paper.Path.Circle({
-                            x: coord.x,
-                            y: coord.y,
-                            radius: coord.r,
-                            fillColor: 'yellow'
-                        });
-                    }
-                    else {
-                        new Paper.Path.Circle({
-                            x: coord.x + (dx),
-                            y: coord.y + (dy),
-                            radius: coord.r,
-                            fillColor: 'yellow'
-                        });
-                    }
-                } else {
-                    if (formSelect.id !== coord.id) {
-                        new Paper.Path.Rectangle({
-                            x: coord.x,
-                            y: coord.y,
-                            width: coord.w,
-                            height: coord.h,
-                            fillColor: 'red'
-                        });
-                    }
-                    else {
-                        new Paper.Path.Rectangle({
-                            x: coord.x + (dx),
-                            y: coord.y + (dy),
-                            width: coord.w,
-                            height: coord.h,
-                            fillColor: 'red'
-                        });
-                    }
+                if (formSelect.id == coord.id) {
+                    coord = { ...coord, ...{ x: coord.x + dx, y: coord.y + dy } }
                 }
+
+                if (coord.r) {
+                    new Paper.Path.Circle({
+                        x: coord.x,
+                        y: coord.y,
+                        radius: coord.r,
+                        fillColor: 'yellow'
+                    });
+                } else {
+                    new Paper.Path.Rectangle({
+                        x: coord.x,
+                        y: coord.y,
+                        width: coord.w,
+                        height: coord.h,
+                        fillColor: 'red'
+                    });
+                }
+                textPrint(coord);
             }
         }
 

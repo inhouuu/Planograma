@@ -14,8 +14,9 @@ export default function Header() {
     const [toggleFile, setToggleFile] = useState<boolean>(false);
     const [toggleMenu, setToggleMenu] = useState<boolean>(false);
     const [attEvent, setAttEvent]: any = useState(false);
+    const [color, setColor]: any = useState('');
     const { data }: any = useContext(ContextApi);
-    const { form, setForm, setHide, hide, setSave, setAction }: any = useContext(GlobalContext);
+    const { form, setForm, setHide, hide, setSave, setAction, colorsPalette }: any = useContext(GlobalContext);
 
 
     const refTools: any = useRef();
@@ -23,7 +24,6 @@ export default function Header() {
     function resizeMain() {
         const domHeader: any = document.querySelector('header')
         refTools.current.style.height = '100%';
-        // refTools.current.style.height = `${(refTools.current.clientHeight - domHeader?.clientHeight)}px`;
     }
 
     useEffect(() => {
@@ -70,6 +70,16 @@ export default function Header() {
                         </svg>
                     </div>
 
+                    <div className={`palette ${form == 'palette' ? 'selectPalette' : null}`} onClick={() => { setAction('palette'); form != 'palette' ? setForm('palette') : null }}>
+                        <span className="material-symbols-outlined" style={{ color: color }}>format_color_fill</span>
+                        <div className='colors'>
+                            {colorsPalette[0] ? Object.values(colorsPalette[0]).map((value: any, idx: any) => (
+                                <div className='color' style={{ 'backgroundColor': value }} onClick={() => { setColor(value); setForm('') }} key={idx}>
+                                </div>
+                            )) : null}
+                        </div>
+                    </div>
+
                     <div className={`move ${form == 'move' ? 'select' : null}`} onClick={() => { setAction('move'); setForm('move') }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 26 26" fill="none">
                             <path d="M4.69231 9.29785L1 12.9902L4.69231 16.6825" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,9 +90,6 @@ export default function Header() {
                             <path d="M16.9998 21.3076L13.3075 24.9999L9.61523 21.3076" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
-                </div>
-
-                <div className='colors'>
                 </div>
             </aside >
         </>
