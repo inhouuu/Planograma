@@ -199,41 +199,46 @@
                 }
 
                 .measure {
-                    display: flex;
-                    gap: $items-margin;
+                    gap: 6px;
+                    overflow: hidden;
+                    align-items: center;
+                    justify-content: center;
+                    padding: $items-padding;
 
-                    .field {
+                    h3 {
+                        margin-bottom: 12px;
+                    }
+                    div {
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: $items-padding;
 
-                        .arrow_range {
-                            transform: rotateZ(90deg);
-                            margin-left: -7px;
-                        }
+                        .field {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: $items-padding;
 
-                        .data_field {
-                            .modulos {
-                                cursor: pointer;
+                            .arrow_range {
+                                transform: rotateZ(90deg);
+                                margin-left: -7px;
                             }
 
-                            .name {
-                                width: auto;
-                                height: 18px;
-                                position: relative;
-                                top: 10px;
-                                left: $items-padding;
-                                background-color: $background-color;
-                                font-size: $font-tiny;
-                                text-align: center;
-                                color: $font-gray;
-                            }
-                        }
+                            .data_field {
+                                .modulos {
+                                    cursor: pointer;
+                                }
 
-                        .icon {
-                            position: relative;
-                            top: 7px;
+                                .name {
+                                    width: auto;
+                                    height: 18px;
+                                    position: absolute;
+                                    top: -10px;
+                                    left: $items-padding;
+                                    background-color: $background-color;
+                                    font-size: $font-tiny;
+                                    text-align: center;
+                                    color: $font-gray;
+                                }
+                            }
                         }
                     }
                 }

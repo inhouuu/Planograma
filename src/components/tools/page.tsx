@@ -14,9 +14,8 @@ export default function Header() {
     const [toggleFile, setToggleFile] = useState<boolean>(false);
     const [toggleMenu, setToggleMenu] = useState<boolean>(false);
     const [attEvent, setAttEvent]: any = useState(false);
-    const [color, setColor]: any = useState('');
     const { data }: any = useContext(ContextApi);
-    const { form, setForm, setHide, hide, setSave, setAction, colorsPalette }: any = useContext(GlobalContext);
+    const { form, setForm, setAction, colorsPalette, color, setColor }: any = useContext(GlobalContext);
 
 
     const refTools: any = useRef();

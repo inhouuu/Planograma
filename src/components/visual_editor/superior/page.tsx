@@ -46,7 +46,6 @@ export default function Superior() {
     }
 
     function textPrint(coords: any) {
-        console.log('paper', Paper)
         let styleFont = {
             fontSize: '20px',
             fontFamily: 'Arial',
@@ -72,75 +71,9 @@ export default function Superior() {
         }
     }
 
-    //PAPER JS
-    // useEffect(() => {
-    //     // Paper.setup(domSuperior.current);
-    //     //ADD POINT (X,Y)
-    //     // var myPoint = new Paper.Point(100, 210);
-
-    //     //ADD SIZE (WIDTH, HEIGHT)
-    //     // var mySize = new Paper.Size(100, 210);
-
-
-    //     // domSuperior.current.addEventListener('mousedown', (event: any) => {
-    //     //     const rect: any = new Paper.Path.Rectangle({
-    //     //         x: 50,
-    //     //         y: 100,
-    //     //         width: 100,
-    //     //         height: 100,
-    //     //         fillColor: 'red'
-    //     //     });
-    //     // })
-
-
-    //     // var circ = new Paper.Path.Circle({
-    //     //     x: 100,
-    //     //     y: 100,
-    //     //     // center: 500,
-    //     //     radius: 40,
-    //     //     strokeColor: 'black'
-    //     // });
-
-
-    //     // var myPath: any = new Paper.Path();
-    //     // myPath.strokeColor = 'yellow';
-
-    //     //CRIA PONTOS
-    //     // myPath.add(new Paper.Point(0, 0));
-    //     // myPath.add(new Paper.Point(100, 50));
-
-    //     //CRIA UMA INTERSECÇÃO DA RETA SELECIONADA
-    //     // myPath.insert(1, new Paper.Point(30, 50));
-
-    //     //CLONAR ITEM COMPLETO
-    //     // var copy = myPath.clone();
-
-    //     //ADICIONAR PONTOS DE INTERSECÇÃO (VISUALMENTE)
-    //     // myPath.fullySelected = true;
-
-    //     //SUAVIZAR BORDAS
-    //     // myPath.smooth();
-
-    //     //ENCONTRA O MENOR CAMINHO E FECHA OS PONTOS
-    //     // myPath.closed = true;
-
-    //     //SELECIONAR FORMA
-    //     // myPath.selected = true;
-
-    //     //REMOVER INTERSECÇÃO
-    //     // myPath.removeSegment(1);
-
-    //     //REMOVER ITEM COMPLETO
-    //     // myPath.remove();
-
-    //     //ADICIONAR PONTO
-    //     // rect.add(myPoint);
-    // })
-
     //CANVAS VANILA
     useEffect(() => {
         //CANVAS SUPERIOR
-        console.log('att')
         const editor_visual: any = document.querySelector("#editor_visual");
         Paper.setup(domSuperior.current);
 
@@ -161,7 +94,7 @@ export default function Superior() {
                         x: coord.x,
                         y: coord.y,
                         radius: coord.r,
-                        fillColor: 'yellow'
+                        fillColor: coord.color
                     });
                 } else {
                     new Paper.Path.Rectangle({
@@ -169,7 +102,7 @@ export default function Superior() {
                         y: coord.y,
                         width: coord.w,
                         height: coord.h,
-                        fillColor: 'red'
+                        fillColor: coord.color
                     });
                 }
                 textPrint(coord);
@@ -197,7 +130,7 @@ export default function Superior() {
                         x: coord.x,
                         y: coord.y,
                         radius: coord.r,
-                        fillColor: 'yellow'
+                        fillColor: coord.color
                     });
                 } else {
                     new Paper.Path.Rectangle({
@@ -205,7 +138,7 @@ export default function Superior() {
                         y: coord.y,
                         width: coord.w,
                         height: coord.h,
-                        fillColor: 'red'
+                        fillColor: coord.color
                     });
                 }
                 textPrint(coord);
@@ -220,7 +153,6 @@ export default function Superior() {
                 tempCoords.color = `${color}`
                 tempCoords.id = new Date().getTime();
                 tempCoords.type = 'form';
-                console.log('form', form);
             }
 
             if (action === 'move') {
@@ -232,7 +164,6 @@ export default function Superior() {
                     y = event.clientY - rect.top;
 
                 if (mouseInside(x, y)?.find((e: any) => e === true)) {
-                    console.log('teste')
                     cvTemp.classList.add('grabbing');
                     dragging = true;
                 }
@@ -258,7 +189,7 @@ export default function Superior() {
                             y: tempCoords.y,
                             width: tempCoords.w,
                             height: tempCoords.h,
-                            fillColor: 'red'
+                            fillColor: tempCoords.color
                         }).selected = true;
                     }
 
@@ -287,7 +218,7 @@ export default function Superior() {
                             x: tempCoords.x,
                             y: tempCoords.y,
                             radius: tempCoords.r,
-                            fillColor: 'yellow'
+                            fillColor: tempCoords.color
                         });
                     }
                 }
@@ -371,7 +302,6 @@ export default function Superior() {
 
         const menuActive: any = (event: any) => {
             event.preventDefault();
-            console.log('mouse', event.layerX)
             if (mouseInside(event.layerX, event.layerY)?.find((e: any) => e === true)) {
                 setCtxMenu({
                     top: `${event.y}px`,

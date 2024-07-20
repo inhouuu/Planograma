@@ -56,27 +56,29 @@ $width-tools: 60px;
                 display: flex;
                 gap: $items-padding;
                 flex-wrap: wrap;
-                width: 0px;
-                height: 0px;
+                width: 340px;
+                height: 120px;
                 position: absolute;
                 top: 0;
                 left: $width-tools;
                 overflow: hidden;
                 background-color: $background-color;
                 padding: 0;
-                transition: 0.1s all;
+                transition: 0.2s all;
                 opacity: 0;
                 justify-content: flex-start;
+                visibility: hidden;
 
                 .color {
+                    transition: 0.4s all;
                     z-index: 9;
                     margin: 0;
                     border: none;
                     width: 25px;
                     height: 25px;
+                    opacity: 0;
                 }
             }
-
 
             .colors:hover {
                 opacity: 1;
@@ -87,11 +89,13 @@ $width-tools: 60px;
             border: 1px solid $white-color;
 
             .colors {
-                flex-wrap: wrap;
-                width: 340px;
-                height: 120px;
+                visibility: visible;
                 opacity: 1;
                 padding: $items-padding;
+
+                .color {
+                    opacity: 1;
+                }
             }
 
         }

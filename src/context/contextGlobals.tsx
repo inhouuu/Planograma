@@ -5,7 +5,7 @@ export const GlobalContext: any = createContext({});
 
 export const GlobalProvider = ({ children }: any) => {
     const [colorsPalette, setColorsPalette]: any = useState([]);
-    // const [color, setColor]: any = useState('');
+    const [color, setColor]: any = useState('');
     const [action, setAction]: any = useState('');
     const [form, setForm]: any = useState('');
     // const [save, setSave]: any = useState(false);
@@ -31,6 +31,8 @@ export const GlobalProvider = ({ children }: any) => {
         }).then(res => res.json())
             .then((res: any) => {
                 setColorsPalette(res.palette_color)
+                console.log('pal', res.palette_color);
+                setColor(Object.values(res.palette_color[0])[0])
             })
     }, [])
 
@@ -39,8 +41,8 @@ export const GlobalProvider = ({ children }: any) => {
         action,
         setAction,
         colorsPalette,
-        // color,
-        // setColor,
+        color,
+        setColor,
         form,
         setForm,
         // save,
