@@ -7,6 +7,7 @@ export default function EditModules() {
     let { colorsPalette, setPlanToggle, planToggle, formSelect, setSupCoords, supCoords, setColor, color }: any = useContext(GlobalContext);
 
     const refEditModules: any = useRef();
+    let modules: number = 0;
 
     //CENTRALIZAR ITEM ABSOLUTO
     return (
@@ -78,10 +79,9 @@ export default function EditModules() {
                         </div>
 
                         {formSelect.type == 'plant' || formSelect.type == 'product' ? <>
-
                             <div className='measure'>
                                 <h3>Estrutura</h3>
-                                <div>
+                                <div className='fields'>
                                     <div className='field'>
                                         <span className="material-symbols-outlined arrow_range icon">arrow_range</span>
                                         <div className='data_field'>
@@ -131,6 +131,69 @@ export default function EditModules() {
                                             }}></input>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </> : null}
+
+                        {formSelect.type == 'plant' || formSelect.type == 'product' ? <>
+                            <div className='measure'>
+                                <h3>Módulos</h3>
+                                <div className='fields2'>
+                                    {[...Array(7)].map(() => (
+                                        <>
+                                            <div className='boxField'>
+                                                <div className='field'>
+                                                    <span className="material-symbols-outlined arrow_range icon">arrow_range</span>
+                                                    <div className='data_field'>
+                                                        <span className='name'>Altura(m)</span>
+                                                        <input type='number' id='textH' autoComplete="off" onChange={(event: any) => {
+                                                            formSelect.height = event.target.value;
+                                                        }}></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className='field'>
+                                                    <span className="material-symbols-outlined icon">arrow_range</span>
+                                                    <div className='data_field'>
+                                                        <span className='name'>Largura(m)</span>
+                                                        <input type='number' id='textW' autoComplete="off" onChange={(event: any) => {
+                                                            formSelect.width = event.target.value;
+                                                        }}></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className='field'>
+                                                    <span className="material-symbols-outlined icon">deployed_code</span>
+                                                    <div className='data_field'>
+                                                        <span className='name'>Comprimento(m)</span>
+                                                        <input type='number' id='textD' autoComplete="off" onChange={(event: any) => {
+                                                            formSelect.deep = event.target.value;
+                                                        }}></input>
+                                                    </div>
+                                                </div>
+
+                                                {/* <div className='field'>
+                                                <span className="material-symbols-outlined icon">deployed_code</span>
+                                                <div className='data_field'>
+                                                    <span className='name'>Divisória(m)</span>
+                                                    <input type='number' id='textD' onChange={(event: any) => {
+                                                        formSelect.div = event.target.value;
+                                                    }}></input>
+                                                </div>
+                                            </div>
+
+                                            <div className='field'>
+                                                <span className="material-symbols-outlined icon">deployed_code</span>
+                                                <div className='data_field'>
+                                                    <span className='name'>Roda Pé(m)</span>
+                                                    <input type='number' id='textD' onChange={(event: any) => {
+                                                        formSelect.footer = event.target.value;
+                                                    }}></input>
+                                                </div>
+                                            </div> */}
+                                            </div>
+                                        </>
+                                    ))}
                                 </div>
                             </div>
                         </> : null}
